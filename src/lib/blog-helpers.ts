@@ -16,9 +16,10 @@ export const fetchImageAsDataURI = async (urlString: string): Promise<string> =>
 
   const res = await fetch(urlString)
   const blob = await res.blob()
-  const arrayBuffer = await blob.arrayBuffer()
-  const bin = String.fromCharCode(...new Uint8Array(arrayBuffer))
-  return `data:image/gif;base64,${Base64.btoa(bin)}`
+  return URL.createObjectURL(blob)
+  //const arrayBuffer = await blob.arrayBuffer()
+  //const bin = String.fromCharCode(...new Uint8Array(arrayBuffer))
+  //return `data:image/gif;base64,${Base64.btoa(bin)}`
 }
 
 export const getPostLink = (slug: string) => {
