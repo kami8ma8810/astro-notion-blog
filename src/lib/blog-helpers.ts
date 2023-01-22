@@ -35,6 +35,7 @@ export const fetchImageAsDataURI = async (urlString: string): Promise<string> =>
       return URL.createObjectURL(blob)
     }
 
+    retryCount = retryCount + 1
     sleep(1000)
   }
   return Promise.resolve('')
