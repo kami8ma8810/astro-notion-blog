@@ -16,6 +16,7 @@ export const fetchImageAsDataURI = async (urlString: string): Promise<string> =>
   }
 
   const res = await fetch(urlString)
+  console.log(res)
   const blob = await res.blob()
   console.log(blob)
   return URL.createObjectURL(blob)
