@@ -15,8 +15,6 @@ const sleep = (time: number) => {
 }
 
 export const fetchImageAsDataURI = async (urlString: string): Promise<string> => {
-  sleep(1000)
-  console.log(urlString)
   try {
     new URL(urlString)
   } catch (err) {
@@ -24,11 +22,22 @@ export const fetchImageAsDataURI = async (urlString: string): Promise<string> =>
     return Promise.resolve('')
   }
 
-  const res = await fetch(urlString)
-  console.log(res)
-  const blob = await res.blob()
-  console.log(blob)
-  return URL.createObjectURL(blob)
+  let retryCount = 0
+  let res: Response
+  while (retryCount < 3) {
+    res = await fetch(urlString)
+    console.log(res)
+
+    const blob = await res.blob()
+    console.log(blob)
+
+    if (blob.size > 0) {
+      return URL.createObjectURL(blob)
+    }
+
+    sleep(1000)
+  }
+  return Promise.resolve('')
   //const arrayBuffer = await blob.arrayBuffer()
   //const bin = String.fromCharCode(...new Uint8Array(arrayBuffer))
   //return `data:image/gif;base64,${Base64.btoa(bin)}`
