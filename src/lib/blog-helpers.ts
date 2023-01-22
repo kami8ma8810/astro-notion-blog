@@ -6,7 +6,16 @@ import type {
   RichText,
 } from './interfaces'
 
+const sleep = (time: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(null)
+    }, time)
+  })
+}
+
 export const fetchImageAsDataURI = async (urlString: string): Promise<string> => {
+  sleep(1000)
   console.log(urlString)
   try {
     new URL(urlString)
