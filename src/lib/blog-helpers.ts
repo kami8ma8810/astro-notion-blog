@@ -7,6 +7,7 @@ import type {
 } from './interfaces'
 
 export const fetchImageAsDataURI = async (urlString: string): Promise<string> => {
+  console.log(urlString)
   try {
     new URL(urlString)
   } catch (err) {
