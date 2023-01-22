@@ -16,6 +16,7 @@ export const fetchImageAsDataURI = async (urlString: string): Promise<string> =>
 
   const res = await fetch(urlString)
   const blob = await res.blob()
+  console.log(blob)
   return URL.createObjectURL(blob)
   //const arrayBuffer = await blob.arrayBuffer()
   //const bin = String.fromCharCode(...new Uint8Array(arrayBuffer))
