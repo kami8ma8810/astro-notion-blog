@@ -7,11 +7,13 @@ export interface Props {
 }
 
 const { post } = Astro.props
+
+const source = await fetchImageAsDataURI(post.FeaturedImage)
 ---
 
 {post.FeaturedImage && (
   <div class="post-featured-image">
-    <img src={await fetchImageAsDataURI(post.FeaturedImage)} alt="post-featured-image" />
+    <img src={source} alt="post-featured-image" />
   </div>
   )}
 
