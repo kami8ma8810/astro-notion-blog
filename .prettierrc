@@ -5,7 +5,7 @@
     {
       "files": ["*.ts", "*.astro"],
       "options": {
-        "semi": false
+        "semi": true
       }
     }
   ]
